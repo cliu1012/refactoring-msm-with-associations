@@ -130,11 +130,13 @@
     </th>
   </tr>
 
-  <% the_id = @the_director.id %>
+  <!-- <% the_id = @the_director.id %>
 
   <% matching_movies = Movie.where({ :director_id => the_id }) %>
 
-  <% films = matching_movies.order({ :year => :asc }) %>
+  <% films = matching_movies.order({ :year => :asc }) %> -->
+
+  <% films = @the_director.filmography.order({ year: :desc }) %> <!-- refactoring the above lines of code -->
 
   <% films.each do |a_movie| %>
     <tr>
@@ -155,7 +157,8 @@
       </td>
 
       <td>
-        <%= Director.where({ :id => a_movie.director_id }).at(0).name %>
+        <!-- <%= Director.where({ :id => a_movie.director_id }).at(0).name %> -->
+        <%= a_movie.director.name %> <!-- refactoring the above line of code -->
       </td>
 
       <td>
